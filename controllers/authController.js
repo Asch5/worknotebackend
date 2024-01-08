@@ -8,6 +8,11 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res) => {
     const { username, password } = req.body;
 
+    ////////////////////////////////////////////////////////////////////////////////!
+    res.header('Access-Control-Allow-Origin', 'https://worknotes.onrender.com');
+    res.header('Access-Control-Allow-Credentials', true);
+    ////////////////////////////////////////////////////////////////////////////////!
+
     if (!username || !password) {
         return res.status(400).json({ message: 'All fields are required' });
     }
