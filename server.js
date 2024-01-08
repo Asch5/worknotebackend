@@ -15,12 +15,6 @@ const PORT = process.env.PORT || 3500;
 
 console.log(process.env.NODE_ENV);
 
-connectDB();
-
-app.use(logger);
-
-app.use(cors(corsOptions));
-
 //////////////////////////////////////////////////////////////////////
 
 app.use((req, res, next) => {
@@ -42,12 +36,17 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Max-Age', 7200);
 
     console.log('Access-Control-Allow-Origin');
-    res.send('Hello World');
 
     next();
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+connectDB();
+
+app.use(logger);
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
