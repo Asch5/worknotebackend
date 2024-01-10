@@ -1,15 +1,15 @@
-const express = require('express')
-const router = express.Router()
-const authController = require('../controllers/authController')
-const loginLimiter = require('../middleware/loginLimiter')
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
+const loginLimiter = require('../middleware/loginLimiter');
+const setHeaders = require('../middleware/setHeaders');
 
-router.route('/')
-    .post(loginLimiter, authController.login)
+router.use(setHeaders);
 
-router.route('/refresh')
-    .get(authController.refresh)
+router.route('/').post(loginLimiter, authController.login);
 
-router.route('/logout')
-    .post(authController.logout)
+router.route('/refresh').get(authController.refresh);
 
-module.exports = router
+router.route('/logout').post(authController.logout);
+
+module.exports = router;
