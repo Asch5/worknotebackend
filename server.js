@@ -14,19 +14,13 @@ const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3500;
 
-console.log(process.env.NODE_ENV);
+app.use(cors(corsOptions));
 
-//////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////
+app.options('*', cors(corsOptions));
 
 connectDB();
 
 app.use(logger);
-
-app.use(cors(corsOptions));
-
-app.options('*', cors(corsOptions));
 
 //app.use(setHeaders);
 

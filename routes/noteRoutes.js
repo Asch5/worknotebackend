@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const notesController = require('../controllers/notesController');
 const verifyJWT = require('../middleware/verifyJWT');
-//const setHeaders = require('../middleware/setHeaders');
+const setHeaders = require('../middleware/setHeaders');
 
 router.use(verifyJWT);
-//router.use(setHeaders);
+router.use(setHeaders);
 router.options('*', (req, res) => {
+    console.log('preflight notes');
     res.header('Access-Control-Allow-Origin', 'https://worknotes.onrender.com');
     res.header(
         'Access-Control-Allow-Methods',

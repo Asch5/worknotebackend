@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 const loginLimiter = require('../middleware/loginLimiter');
-//const setHeaders = require('../middleware/setHeaders');
+const setHeaders = require('../middleware/setHeaders');
 
-//router.use(setHeaders);
+router.use(setHeaders);
 
 router.options('*', (req, res) => {
+    console.log('preflight authorization');
     res.header('Access-Control-Allow-Origin', 'https://worknotes.onrender.com');
     res.header(
         'Access-Control-Allow-Methods',
