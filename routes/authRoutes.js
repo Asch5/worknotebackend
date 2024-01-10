@@ -6,6 +6,17 @@ const loginLimiter = require('../middleware/loginLimiter');
 
 //router.use(setHeaders);
 
+router.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'https://worknotes.onrender.com');
+    res.header(
+        'Access-Control-Allow-Methods',
+        'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+    );
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.sendStatus(204);
+});
+
 router.route('/').post(loginLimiter, authController.login);
 
 router.route('/refresh').get(authController.refresh);
