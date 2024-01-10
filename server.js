@@ -26,7 +26,7 @@ app.use(logger);
 
 app.use(cors(corsOptions));
 
-app.options('https://worknotes.onrender.com', cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 //app.use(setHeaders);
 

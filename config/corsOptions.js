@@ -10,8 +10,8 @@ const corsOptions = {
     // },
 
     // origin: 'https://worknotes.onrender.com',
-    origin: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    origin: 'https://worknotes.onrender.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
     optionsSuccessStatus: 204,
 };
