@@ -24,15 +24,15 @@ app.use(cookieParser());
 
 app.use(cors(corsOptions));
 
-app.options('*', cors(corsOptions));
+//app.options('*', cors(corsOptions));
 
-// app.options('*', (req, res) => {
-//     console.log('preflight');
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     res.status(204).send();
-//     res.json({ msg: 'i am preflight' });
-// });
+app.options('https://worknotes.onrender.com', (req, res) => {
+    console.log('preflight');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.status(204).send();
+    res.json({ msg: 'i am preflight' });
+});
 
 // app.options('*', (req, res) => {
 //     console.log('preflight');
