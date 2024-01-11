@@ -10,7 +10,18 @@ const corsOptions = {
     },
 
     // origin: 'https://worknotes.onrender.com',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+        'Content-Type',
+        'Authorization',
+        'X-Content-Type-Options',
+        'Accept',
+        'X-Requested-With',
+        'Origin',
+        'Access-Control-Request-Method',
+        'Access-Control-Request-Headers',
+    ],
+    exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
     credentials: true,
     optionsSuccessStatus: 204,
 };

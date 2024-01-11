@@ -10,23 +10,46 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/dbConn');
 const mongoose = require('mongoose');
-//const setHeaders = require('./middleware/setHeaders');
+const setHeaders = require('./middleware/setHeaders');
 
 const PORT = process.env.PORT || 3500;
-
-app.use(cors(corsOptions));
-
-app.options('*', cors(corsOptions));
 
 connectDB();
 
 app.use(logger);
 
-//app.use(setHeaders);
-
 app.use(express.json());
 
 app.use(cookieParser());
+
+app.use(cors(corsOptions));
+
+//app.options('*', cors(corsOptions));
+
+// app.options('http://localhost:3000', (req, res) => {
+//     console.log('preflight');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     res.status(204).send();
+// });
+
+// app.options('*', (req, res) => {
+//     console.log('preflight');
+//     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+//     res.header(
+//         'Access-Control-Allow-Methods',
+//         'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+//     );
+//     res.header('Access-Control-Allow-Credentials', true);
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     res.sendStatus(204);
+// });
+
+// app.use(setHeaders);
+
+// app.get('/', function (req, res, next) {
+//     res.json({ msg: 'This is CORS-enabled for an allowed domain.' });
+// });
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
