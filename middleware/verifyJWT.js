@@ -7,6 +7,10 @@ const verifyJWT = (req, res, next) => {
     // console.log('verifyJWT - authHeader', authHeader);
     // console.log('verifyJWT - cookies', cookies);
 
+    if (req.method === 'OPTIONS') {
+        return next();
+    }
+
     if (!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({
             message: 'Unauthorized in verifyJWT (There is not the authHeader)',

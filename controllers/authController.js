@@ -71,8 +71,9 @@ const refresh = (req, res) => {
                 username: decoded.username,
             }).exec();
 
-            if (!foundUser)
+            if (!foundUser) {
                 return res.status(401).json({ message: 'Unauthorized' });
+            }
 
             const accessToken = jwt.sign(
                 {

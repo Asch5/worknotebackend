@@ -10,7 +10,8 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/dbConn');
 const mongoose = require('mongoose');
-const setHeaders = require('./middleware/setHeaders');
+const headersSettings = require('./config/headersSettings');
+//const setHeaders = require('./middleware/setHeaders');
 
 const PORT = process.env.PORT || 3500;
 
@@ -22,17 +23,37 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use(cors(corsOptions));
+app.options('/', (req, res) => {
+    console.log('preflight');
+    res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
+    res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
+    res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
+    res.header('Access-Control-Allow-Credentials', true);
+    res.sendStatus(204);
+    res.json({ msg: 'This is CORS-enabled for an allowed domain.' });
+});
+
+app.use((req, res, next) => {
+    console.log();
+    res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
+    res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
+    res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+//app.use(cors(corsOptions));
 
 //app.options('*', cors(corsOptions));
 
-app.options('https://worknotes.onrender.com', (req, res) => {
-    console.log('preflight');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.status(204).send();
-    res.json({ msg: 'i am preflight' });
-});
+// app.options('https://worknotes.onrender.com', (req, res, next) => {
+//     console.log('preflight');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     res.status(204).send();
+//     res.json({ msg: 'i am preflight' });
+//     next();
+// });
 
 // app.options('*', (req, res) => {
 //     console.log('preflight');
