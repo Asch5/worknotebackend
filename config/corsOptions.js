@@ -1,28 +1,21 @@
 const allowedOrigins = require('./allowedOrigins');
+const headersSettings = require('./headersSettings');
+headersSettings;
 
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            console.log('origin allowed --- ', origin);
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    // origin: (origin, callback) => {
+    //     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    //         console.log('origin allowed --- ', origin);
+    //         callback(null, true);
+    //     } else {
+    //         callback(new Error('Not allowed by CORS'));
+    //     }
+    // },
 
-    // origin: 'https://worknotes.onrender.com',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: [
-        'Content-Type',
-        'Authorization',
-        'X-Content-Type-Options',
-        'Accept',
-        'X-Requested-With',
-        'Origin',
-        'Access-Control-Request-Method',
-        'Access-Control-Request-Headers',
-    ],
-    exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
+    origin: headersSettings.origin,
+    methods: headersSettings.methods,
+    allowedHeaders: headersSettings.headers,
+    // exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
     credentials: true,
     optionsSuccessStatus: 204,
 };

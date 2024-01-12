@@ -23,14 +23,16 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
+
 app.options('/', (req, res) => {
-    console.log('preflight');
     res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
     res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
     res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
     res.header('Access-Control-Allow-Credentials', true);
     res.sendStatus(204);
-    res.json({ msg: 'This is CORS-enabled for an allowed domain.' });
 });
 
 app.use((req, res, next) => {
