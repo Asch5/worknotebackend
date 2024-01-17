@@ -27,22 +27,22 @@ app.use(cors(corsOptions));
 
 app.options('*', cors(corsOptions));
 
-app.options('/', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
-    res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
-    res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
-    res.header('Access-Control-Allow-Credentials', true);
-    res.sendStatus(204);
-});
+// app.options('/', (req, res) => {
+//     res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
+//     res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
+//     res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
+//     res.header('Access-Control-Allow-Credentials', true);
+//     res.sendStatus(204);
+// });
 
-app.use((req, res, next) => {
-    console.log();
-    res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
-    res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
-    res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
-    res.header('Access-Control-Allow-Credentials', true);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log();
+//     res.setHeader('Access-Control-Allow-Origin', headersSettings.origin);
+//     res.setHeader('Access-Control-Allow-Methods', headersSettings.methods);
+//     res.setHeader('Access-Control-Allow-Headers', headersSettings.headers);
+//     res.header('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 
 //app.use(cors(corsOptions));
 
